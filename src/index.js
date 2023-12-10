@@ -1,7 +1,29 @@
 import { catAndDogFetcher, magicalCatRecognizer } from "./lib.js";
 
 const getCats = async () => {
-  // Решение
+  // Решение ===
+
+  const pets = await catAndDogFetcher.fetchAll();
+  console.log(`allPets:`, pets);
+
+  // по факту сортировка cats происходит после вычесления результата getCats()
+  // из-за чего в cats попадают все pets?
+  // как использовать async await, чтобы до возвращения результата
+  // getCats() дождаться выполнения cats
+  
+  const recognizedCats = async (animals) =>
+    animals.filter(async (animal) => {
+      const res = await magicalCatRecognizer.recognize(animal);
+
+      console.log(`fitler(ID: ${animal.id}):`, res);
+      return res;
+    });
+  const cats = await recognizedCats(pets);
+
+  console.log(`setCats(res):`, { cats, pets });
+  return cats;
+
+  // ===
 };
 const run = async () => {
   let topRatedCats;
