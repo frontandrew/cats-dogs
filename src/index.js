@@ -15,7 +15,32 @@ const result = {
 
 console.log(result);
 
-// Решение
+// Решение ===
+
+const { top = [], rest = [] } = result;
+
+function getAnimalEl({ filename }) {
+  const item = document.createElement("li");
+  const img = document.createElement("img");
+
+  img.src = filename;
+  item.appendChild(img);
+
+  console.log(`ANIMAL ELEM:`, item, { item });
+  return item;
+}
+
+const topBox = document.getElementsByClassName("animals-top")[0];
+const restBox = document.getElementsByClassName("animals-rest")[0];
+
+top.forEach(function (item) {
+  topBox.appendChild(getAnimalEl(item));
+});
+rest.forEach(function (item) {
+  restBox.appendChild(getAnimalEl(item));
+});
+
+// ===
 
 // Проверки
 const images = [...document.querySelectorAll("img")]
