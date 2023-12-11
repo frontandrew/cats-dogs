@@ -105,19 +105,3 @@ export const data = {
     likes: 72
   }
 }
-// повтор тех же вычислений синхронно
-
-const dataPets = Object.entries(data)
-  .reduce(
-    (acc, [id, { width, height, likes, filename }]) => [
-      ...acc,
-      { id, width, height, likes, filename },
-    ],
-    []
-  )
-  .sort((a1, a2) => a2.likes - a1.likes);
-
-const dataCats = dataPets.filter((animal) => data[animal.id].label === 0);
-
-// синхронно cats отсортирован верно
-console.log(`SYNC DATA:`, { pest: dataPets, cats: dataCats });
