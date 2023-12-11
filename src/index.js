@@ -13,34 +13,25 @@ const result = {
     .sort((a1, a2) => (a1.width * a1.height > a2.height * a2.width ? -1 : 1)),
 };
 
-console.log(result);
-
-// Решение ===
-
-const { top = [], rest = [] } = result;
-
-function getAnimalEl({ filename }) {
-  const item = document.createElement("li");
+const topContainer = document.querySelector(".animals-top");
+const restContainer = document.querySelector(".animals-rest");
+const createAnimalItem = (entity) => {
+  const li = document.createElement("li");
   const img = document.createElement("img");
+  img.src = entity.filename;
+  li.appendChild(img);
 
-  img.src = filename;
-  item.appendChild(img);
+  return li;
+};
 
-  console.log(`ANIMAL ELEM:`, item, { item });
-  return item;
-}
+const fillContainer = (arr, container) => {
+  arr.forEach((item) => {
+    container.appendChild(createAnimalItem(item));
+  });
+};
 
-const topBox = document.getElementsByClassName("animals-top")[0];
-const restBox = document.getElementsByClassName("animals-rest")[0];
-
-top.forEach(function (item) {
-  topBox.appendChild(getAnimalEl(item));
-});
-rest.forEach(function (item) {
-  restBox.appendChild(getAnimalEl(item));
-});
-
-// ===
+fillContainer(result.top, topContainer);
+fillContainer(result.rest, restContainer);
 
 // Проверки
 const images = [...document.querySelectorAll("img")]
