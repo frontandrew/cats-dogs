@@ -1,2 +1,4 @@
 # cats-dogs
-Pet example
+visit: https://frontandrew.github.io/cats-dogs/
+
+run index.js
